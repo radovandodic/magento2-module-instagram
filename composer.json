@@ -1,0 +1,28 @@
+{
+    "name": "radovandodic/magento2-module-instagram",
+    "description": "DodaSoft Instagram Widget Extension",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Radovan Dodic",
+            "email": "radovan.dodic@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^8.1",
+        "magento/framework": "^103.0.*",
+        "ext-curl": "^7.0",
+        "radovandodic/magento2-module-core": "*"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "DodaSoft\\Instagram\\": ""
+        }
+    }
+}

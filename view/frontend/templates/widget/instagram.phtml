@@ -1,0 +1,72 @@
+<?php /** @var $block DodaSoft\Instagram\Block\Widget\Instagram */ ?>
+<?php if ($block->isInstagramWidgetEnabled()): ?>
+    <?php $instagramMedia = $block->getInstagramMedia(); ?>
+    <?php $blockId = $block->getBlockUniqueId(); ?>
+    <div class="ds-instagram-widget">
+        <?php if (!empty($instagramMedia)): ?>
+            <div class="content-heading">
+                <h3 class="title"><?= $block->escapeHtml(('FOLLOW US ON INSTAGRAM')) ?></h3>
+            </div>
+            <div id="ds-instagram-widget-<?= $blockId ?>" class="owl-carousel owl-theme">
+                <?php foreach ($block->getInstagramMedia() as $media): ?>
+                    <?php if (empty($media['media_url'])) {
+                        continue;
+                    } ?>
+                    <div class="item"
+                         <?php if ($this->getData('centerItemsVertically')): ?>style="align-items: center;"<?php endif; ?>>
+                        <?php if ($this->getData('displayBackBlurredImage')): ?>
+                            <div class="background-image"
+                                 style="background-image: url('<?= $media['media_url'] ?>');"></div>
+                        <?php endif; ?>
+                        <a style="<?= $block->getImageHeight() ?>"
+                           href="<?= $block->getInstagramUrl($media['permalink'] ?? null) ?>" target="_blank"
+                           rel="noopener">
+                            <img src="<?= $media['media_url'] ?>" class="img-responsive img-fluid" alt=""/>
+                        </a>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php else: ?>
+            <div class="message info empty">
+                <div>
+                    <?= $block->escapeHtml(__('Instagram data is empty or your instagram account has no images.')) ?>
+                </div>
+            </div>
+        <?php endif; ?>
+    </div>
+    <?php if (!empty($instagramMedia)): ?>
+        <script type="text/javascript">
+            require([
+                'jquery',
+                'ds_instagram_owl'
+            ], function ($) {
+                jQuery('#ds-instagram-widget-<?= $blockId ?>').owlCarousel({
+                    autoplay: <?= $this->getAutoplay() ? 'true' : 'false'; ?>,
+                    loop: <?= $this->getLoop() ? 'true' : 'false'; ?>,
+                    autoplayHoverPause: <?= $this->getData('hoverPause') ? 'true' : 'false'; ?>,
+                    nav: <?= $this->getData('showNav') ? 'true' : 'false'; ?>,
+                    dots: <?= $this->getData('showDots') ? 'true' : 'false'; ?>,
+                    slideBy: <?= $this->getData('slideBy') ?? '1'; ?>,
+                    rtl: <?= $this->getRtl() ? 'true' : 'false'; ?>,
+                    margin: <?= $this->getMargin() ?? '10'; ?>,
+                    mouseDrag: false,
+                    items: <?= $this->getData('itemsDefault') ?? '5'; ?>,
+                    responsive: {
+                        0: {
+                            items: <?= $this->getData('itemsMobile') ?? '1'; ?>,
+                            nav: false,
+                        },
+                        571: {
+                            items: <?= $this->getData('itemsTablet') ?? '3'; ?>
+                        },
+                        1200: {
+                            items: <?= $this->getData('itemsDefault') ?? '5'; ?>
+                        }
+                    },
+                    navText: ["<div class='nav-btn prev-slide'></div>", "<div class='nav-btn next-slide'></div>"],
+                    autoHeight: true
+                });
+            });
+        </script>
+    <?php endif; ?>
+<?php endif; ?>
