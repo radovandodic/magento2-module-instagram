@@ -3,7 +3,6 @@
 	<module name="DodaSoft_Instagram">
         <sequence>
             <module name="DodaSoft_Core"/>
-            <module name="MGS_Fbuilder"/>
         </sequence>
     </module>
 </config>
