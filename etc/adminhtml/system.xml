@@ -23,7 +23,7 @@
                 </field>
                 <field id="username" type="text" sortOrder="30" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
                     <label>Instagram Username</label>
-                    <comment>Add USERNAME part of instagram url. Example: https://www.instagram.com/USERNAME/</comment>
+                    <comment>Add USERNAME part of your instagram profile url, used for generating image link. Example: https://www.instagram.com/USERNAME/</comment>
                     <validate>required-entry no-whitespace</validate>
                     <depends>
                         <field id="enabled">1</field>
