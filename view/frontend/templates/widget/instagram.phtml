@@ -15,13 +15,13 @@
                     <div class="item"
                          <?php if ($this->getData('centerItemsVertically')): ?>style="align-items: center;"<?php endif; ?>>
                         <?php if ($this->getData('displayBackBlurredImage')): ?>
-                            <div class="background-image"
-                                 style="background-image: url('<?= $media['media_url'] ?>');"></div>
+                            <div class="background-image owl-lazy" data-src="<?= $media['media_url'] ?>"></div>
                         <?php endif; ?>
                         <a style="<?= $block->getImageHeight() ?>"
                            href="<?= $block->getInstagramUrl($media['permalink'] ?? null) ?>" target="_blank"
                            rel="noopener">
-                            <img src="<?= $media['media_url'] ?>" class="img-responsive img-fluid" alt=""/>
+                            <img data-src="<?= $media['media_url'] ?>" class="owl-lazy img-responsive img-fluid"
+                                 alt=""/>
                         </a>
                     </div>
                 <?php endforeach; ?>
@@ -50,6 +50,7 @@
                     rtl: <?= $this->getRtl() ? 'true' : 'false'; ?>,
                     margin: <?= $this->getMargin() ?? '10'; ?>,
                     mouseDrag: false,
+                    lazyLoad: true,
                     items: <?= $this->getData('itemsDefault') ?? '5'; ?>,
                     responsive: {
                         0: {
@@ -66,6 +67,17 @@
                     navText: ["<div class='nav-btn prev-slide'></div>", "<div class='nav-btn next-slide'></div>"],
                     autoHeight: true
                 });
+
+                // Solving issue with Lazy Load and 1px height
+                setTimeout(function () {
+                    if (jQuery(".ds-instagram-widget .owl-stage-outer").height() < 2) {
+                        jQuery(".ds-instagram-widget .owl-stage-outer").css({height: "100%"});
+                        <?php if ($this->getData('displayBackBlurredImage')): ?>
+                        jQuery(".ds-instagram-widget .background-image").css("min-height", "100%");
+                        <?php endif; ?>
+                    }
+                }, 1000);
+
             });
         </script>
     <?php endif; ?>
