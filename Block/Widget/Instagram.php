@@ -15,7 +15,7 @@ use DodaSoft\Instagram\Model\Service\GetConfig;
 class Instagram extends Template implements BlockInterface
 {
     const CACHE_ID       = 'ds_instagram_widget_data';
-    const CACHE_LIFETIME = 86400; // max 1 day, as instagram CDN will return "URL signature expired"
+    const CACHE_LIFETIME = 259200; // max 3 days, as instagram CDN will return "URL signature expired"
     const INSTAGRAM_URL  = 'https://www.instagram.com/';
 
     /**
