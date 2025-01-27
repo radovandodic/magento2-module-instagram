@@ -10,7 +10,7 @@ use DodaSoft\Instagram\Exception\InstagramException;
 class GetInstagramMedia
 {
     const API_URL            = 'https://graph.instagram.com';
-    const API_VERSION        = 'v21.0';
+    const API_VERSION        = 'v22.0';
     const API_USERID_PATTERN = '%s/%s/me?fields=user_id,username&access_token=%s';
     const API_MEDIA_PATTERN  = '%s/%s/%s/media?limit=50&access_token=%s';
     const API_IMAGE_PATTERN  = '%s/%s/%s/?fields=id,media_type,media_url,owner,like_count,permalink,timestamp&access_token=%s';
