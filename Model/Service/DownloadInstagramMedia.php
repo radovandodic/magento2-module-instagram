@@ -97,7 +97,7 @@ class DownloadInstagramMedia
             return;
         }
         $filenameUrl = $this->getNewMediaUrl();
-        $imageContent = file_get_contents($instagramMedia['media_url']);
+        $imageContent = file_get_contents($this->instagramMedia['media_url']);
 
         // use Imagick if posible and convert to webp format
         if (class_exists("Imagick")) {
