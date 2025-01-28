@@ -21,19 +21,27 @@ class GetInstagramMedia
     protected LoggerInterface $logger;
 
     /**
+     * @var DownloadInstagramMedia
+     */
+    protected DownloadInstagramMedia $downloadInstagramMedia;
+
+    /**
      * @var array
      */
     protected array $config;
 
     /**
-     * @param GetConfig       $config
-     * @param LoggerInterface $logger
+     * @param GetConfig              $config
+     * @param DownloadInstagramMedia $downloadInstagramMedia
+     * @param LoggerInterface        $logger
      */
     public function __construct(
         GetConfig $config,
+        DownloadInstagramMedia $downloadInstagramMedia,
         LoggerInterface $logger
     ) {
         $this->config = $config->execute();
+        $this->downloadInstagramMedia = $downloadInstagramMedia;
         $this->logger = $logger;
     }
 
@@ -57,8 +65,15 @@ class GetInstagramMedia
                         $imageData = $this->getMediaImageUrl($mediaImageId, $this->config['token']);
                         // Can be CAROUSEL_ALBUM, IMAGE, or VIDEO.
                         // Skip VIDEO
-                        if ($imageData['media_type'] == 'VIDEO') {
+                        // Skip bad $imageData
+                        if (
+                            !$imageData
+                            || $imageData['media_type'] == 'VIDEO'
+                        ) {
                             continue;
+                        }
+                        if (!empty($this->config['download'])) {
+                            $imageData = $this->downloadInstagramMedia->execute($imageData, (int)$this->config['img_width'] ?? 350);
                         }
                         $mediaImages[] = $imageData;
                     }

@@ -29,12 +29,29 @@
                         <field id="enabled">1</field>
                     </depends>
                 </field>
-                <field id="img_height" type="text" sortOrder="40" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
-                    <label>Carousel IMG height</label>
+                <field id="carousel_height" type="text" sortOrder="40" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>Carousel height</label>
                     <comment>In most of cases instagram images have different height, here you can specify fixed height in pixels for carousel images.</comment>
                     <validate>validate-number</validate>
                     <depends>
                         <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="download" type="select" sortOrder="100" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>Download Instagram Images</label>
+                    <comment>Instagram images will be downloaded to media folder, and converted to webp.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="img_width" type="text" sortOrder="110" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>Image width</label>
+                    <comment>In pixels</comment>
+                    <validate>validate-number</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                        <field id="download">1</field>
                     </depends>
                 </field>
 			</group>

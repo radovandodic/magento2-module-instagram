@@ -122,10 +122,10 @@ class Instagram extends Template implements BlockInterface
     /**
      * @return string
      */
-    public function getImageHeight(): string
+    public function getCarouselHeight(): string
     {
-        if (!empty($this->config['imgHeight'])) {
-            return 'height: ' . $this->config['imgHeight'] . 'px;';
+        if (!empty($this->config['carousel_height'])) {
+            return 'height: ' . $this->config['carousel_height'] . 'px;';
         }
 
         return '';
