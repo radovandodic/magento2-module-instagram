@@ -91,7 +91,7 @@ class DownloadInstagramMedia
      */
     protected function downloadFile(int $width): void
     {
-        $directory = $this->getAbsoluteDirectoryPathToSaveMedia();
+        $dirForSave = $this->getAbsoluteDirectoryPathToSaveMedia();
         $filename = $this->getNewFileName();
         if ($this->isImageAlreadySavedToMedia()) {
             return;
