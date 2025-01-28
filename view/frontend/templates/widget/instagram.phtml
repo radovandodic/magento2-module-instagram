@@ -17,7 +17,7 @@
                         <?php if ($this->getData('displayBackBlurredImage')): ?>
                             <div class="background-image owl-lazy" data-src="<?= $media['media_url'] ?>"></div>
                         <?php endif; ?>
-                        <a style="<?= $block->getImageHeight() ?>"
+                        <a style="<?= $block->getCarouselHeight() ?>"
                            href="<?= $block->getInstagramUrl($media['permalink'] ?? null) ?>" target="_blank"
                            rel="noopener">
                             <img data-src="<?= $media['media_url'] ?>" class="owl-lazy img-responsive img-fluid"
