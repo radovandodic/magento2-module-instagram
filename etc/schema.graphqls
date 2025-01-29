@@ -1,0 +1,14 @@
+type Query {
+    getDsInstagramMedia: [GetDsInstagramMedia] @resolver( class: "DodaSoft\\Instagram\\Model\\Resolver\\GetDsInstagramMedia") @doc(description: "DodaSoft Instagram Media Query.")
+}
+type GetDsInstagramMedia {
+    id: String @doc(description: "Instagram media ID")
+    media_type: String @doc(description: "Instagram media type: CAROUSEL_ALBUM, IMAGE, or VIDEO")
+    media_url: String @doc(description: "Instagram media URL")
+    like_count: Int @doc(description: "Instagram like count")
+    permalink: String @doc(description: "URL of Instagram post")
+    timestamp: String @doc(description: "Timestamp when API call was made")
+}
+type StoreConfig {
+    ds_instagram_enabled: Boolean  @doc(description: "Config: dodasoft_instagram/configuration/enabled.")
+}

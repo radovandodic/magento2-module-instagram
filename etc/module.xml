@@ -3,6 +3,9 @@
 	<module name="DodaSoft_Instagram">
         <sequence>
             <module name="DodaSoft_Core"/>
+            <module name="Magento_Widget"/>
+            <module name="Magento_GraphQl"/>
+            <module name="Magento_StoreGraphQl"/>
         </sequence>
     </module>
 </config>
